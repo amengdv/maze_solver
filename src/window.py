@@ -1,14 +1,13 @@
-from tkinter import Tk, Canvas
+from tkinter import BOTH, Tk, Canvas
 
 class Window:
     def __init__(self, width, height, title):
         self.__root = Tk()
-        self.__root.geometry(f"{width}x{height}")
         self.__root.title(title)
-        self.__canvas = Canvas()
-        self.__canvas.pack()
-        self.__is_running = False
+        self.__canvas = Canvas(self.__root, bg="white", height=height, width=width)
+        self.__canvas.pack(fill=BOTH, expand=1)
         self.__root.protocol("WM_DELETE_WINDOW", self.close)
+        self.__is_running = False
 
 
     def redraw(self):
@@ -24,4 +23,8 @@ class Window:
 
     def close(self):
         self.__is_running = False
+
+
+    def draw_line(self, line, fill_color="black"):
+        line.draw(self.__canvas, fill_color)
 
