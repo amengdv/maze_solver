@@ -1,2 +1,5 @@
 # Ignore pycache
 __pycache__
+
+# Ignore main.sh
+main.sh

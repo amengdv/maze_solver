@@ -29,11 +29,30 @@ class Cell:
                 "bottom" : Line(Point(self.x, self.y + self.height), Point(self.x + self.width, self.y + self.height)),
         }
 
+        self.has_walls = {
+            "top": True,
+            "left": True,
+            "right": True,
+            "bottom": True,
+        }
+
         self.win = window
+        self.visited = False
 
 
-    def draw(self, walls=["top", "left", "right", "bottom"]):
-        for wall in walls:
-            self.win.draw_line(self.walls[wall])
+    def draw(self):
+        for wall in self.has_walls:
+            if self.has_walls[wall]:
+               self.win.draw_line(self.walls[wall])
+
+
+    def draw_move(self, to_cell, undo=False):
+        from_center = (self.x + self.width // 2, self.y + self.height // 2)
+        to_center = (to_cell.x + to_cell.width // 2, to_cell.y + to_cell.height // 2)
+        line = Line(Point(from_center[0], from_center[1]), Point(to_center[0], to_center[1]))
+        color = "red"
+        if undo:
+            color = "gray"
+        self.win.draw_line(line, color)
 
 
