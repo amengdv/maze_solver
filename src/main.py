@@ -22,7 +22,8 @@ def main():
 
     window = Window(screen_width, screen_height, "Test")
 
-    Maze(margin, margin, 12, 16, cell_width, cell_height, window)
+    maze = Maze(margin, margin, 12, 16, cell_width, cell_height, window)
+    maze.solve()
 
 
     window.wait_for_close()
